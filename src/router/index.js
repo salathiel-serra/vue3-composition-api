@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 import HomeView from '@/views/HomeView.vue';
 import ToDos from '@/views/ToDos/ToDos.vue';
 import AddToDo from '@/views/ToDos/AddToDo.vue';
+import EditToDo from '@/views/ToDos/EditToDo.vue';
 
 const routes = [
   {
@@ -18,6 +19,12 @@ const routes = [
     path: '/todos/create',
     name: 'todos.create',
     component: AddToDo
+  },
+  {
+    path: '/todos/:id/edit',
+    name: 'todos.edit',
+    component: EditToDo,
+    props: true
   }
 ]
 
