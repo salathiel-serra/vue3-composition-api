@@ -1,7 +1,7 @@
 <template>
     <h1> 
         Lista de tarefas 
-        <router-link :to="{name: 'todos.create'}"> + </router-link>
+        <router-link :to="{name: 'todos.create'}"> <i class="fas fa-plus-square"></i> </router-link>
     </h1>
     <hr>
     <div v-if="isLoading"> Carregando ... </div>

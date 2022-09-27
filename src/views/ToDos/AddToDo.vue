@@ -9,8 +9,8 @@
             <input type="text" name="description" v-model="todoForm.description" placeholder="Descrição">
 
             <button type="submit" :disabled="todoForm.isLoading"> 
-                <span v-if="todoForm.isLoading"> Adicionar </span>
-                <span v-else> Enviando </span>
+                <span v-if="!todoForm.isLoading"> Adicionar </span>
+                <span v-else> Adicionando... </span>
             </button>
         </form>
     </div>

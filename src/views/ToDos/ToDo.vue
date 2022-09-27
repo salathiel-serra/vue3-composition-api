@@ -3,9 +3,10 @@
         <input type="checkbox" name="completed" :checked="completed" @change="toogleStatus">
         {{ todo.title }} || {{ todo.body }} ||
         <router-link 
-            :to="{name: 'todos.edit', params: {id: todo.identify}}"> Editar
+            :to="{name: 'todos.edit', params: {id: todo.identify}}"> 
+            <i class="fas fa-edit"></i>
         </router-link>
-        <a href="#" @click.prevent="deleteTodo"> Remover </a>
+        <a href="#" @click.prevent="deleteTodo"> <i class="fas fa-trash-alt"></i> </a>
     </div>
 </template>
 
