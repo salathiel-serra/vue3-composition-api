@@ -11,7 +11,6 @@
             <button type="submit" :disabled="todoForm.isLoading"> 
                 <span v-if="todoForm.isLoading"> Adicionar </span>
                 <span v-else> Enviando </span>
-                 
             </button>
         </form>
     </div>

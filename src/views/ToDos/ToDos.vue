@@ -7,7 +7,7 @@
     <div v-if="isLoading"> Carregando ... </div>
     <ul>
         <li v-for="todo in todoList" :key="todo.identify">
-            {{todo.title}}
+            <to-do :todo="todo"></to-do>
         </li>
     </ul>
 </template>
@@ -15,9 +15,11 @@
 <script>
     import { onMounted, ref } from "vue";
     import TodoService from '@/services/todos.service';
+    import ToDo from '@/views/ToDos/ToDo.vue';
 
     export default {
         name: 'ToDos',
+        components: {ToDo},
         setup() {
             const todoList = ref([]);
 
