@@ -1,5 +1,6 @@
 <template>
     <div>
+        <input type="checkbox" name="completed" :checked="completed" @change="toogleStatus">
         {{ todo.title }} || {{ todo.body }} ||
         <router-link 
             :to="{name: 'todos.edit', params: {id: todo.identify}}"> Editar
@@ -9,6 +10,7 @@
 </template>
 
 <script>
+    import { computed } from 'vue';
     import TodoService from '@/services/todos.service';
 
     export default {
@@ -22,7 +24,7 @@
         },
 
         setup(props, {emit}) {
-            
+            // METHODs
             const deleteTodo = () => {
                 TodoService.deleteTodo(props.todo.identify)
                     .then(() => {
@@ -30,8 +32,29 @@
                     })
             };
 
+            const toogleStatus = () => {
+                const todoEdit = props.todo;
+                const params = {
+                    name: todoEdit.title,
+                    description: todoEdit.body,
+                    completed: !completed.value,
+                };
+
+                TodoService.editTodo(props.todo.identify, params)
+                    .then(() => {
+                        emit('todoUpdated', params);
+                    });
+            };
+
+            // COMPUTEDs
+            const completed = computed(() => {
+                return props.todo.completed == 'S';
+            })
+
             return {
-                deleteTodo
+                deleteTodo,
+                completed,
+                toogleStatus
             }
         }
     }

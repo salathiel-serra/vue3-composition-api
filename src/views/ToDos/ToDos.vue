@@ -7,7 +7,11 @@
     <div v-if="isLoading"> Carregando ... </div>
     <ul>
         <li v-for="todo in todoList" :key="todo.identify">
-            <to-do :todo="todo" @todoDeleted="removeTodoList"></to-do>
+            <to-do 
+                :todo="todo" 
+                @todoDeleted="removeTodoList"
+                @todoUpdated="todoUpdated">
+            </to-do>
         </li>
     </ul>
 </template>
@@ -48,10 +52,16 @@
                 todoList.value.splice( todoList.value.indexOf(todo), 1 );
             };
 
+            const todoUpdated = (todo) => {
+                const todoIndex = todoList.value.indexOf(todo);
+                todoList[todoIndex] = todo;
+            };
+
             return {
                 todoList,
                 isLoading,
-                removeTodoList
+                removeTodoList,
+                todoUpdated
             }
         }
 
