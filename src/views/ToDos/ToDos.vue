@@ -7,7 +7,7 @@
     <div v-if="isLoading"> Carregando ... </div>
     <ul>
         <li v-for="todo in todoList" :key="todo.identify">
-            <to-do :todo="todo"></to-do>
+            <to-do :todo="todo" @todoDeleted="removeTodoList"></to-do>
         </li>
     </ul>
 </template>
@@ -18,14 +18,18 @@
     import ToDo from '@/views/ToDos/ToDo.vue';
 
     export default {
-        name: 'ToDos',
-        components: {ToDo},
-        setup() {
-            const todoList = ref([]);
 
+        name: 'ToDos',
+        
+        components: {ToDo},
+
+        setup() {
+
+            const todoList = ref([]);
             const isLoading = ref(false);
 
             onMounted(() => {
+
                 isLoading.value = true;
 
                 TodoService.getAll()
@@ -40,9 +44,14 @@
                     });
             });
 
+            const removeTodoList = (todo) => {
+                todoList.value.splice( todoList.value.indexOf(todo), 1 );
+            };
+
             return {
                 todoList,
-                isLoading
+                isLoading,
+                removeTodoList
             }
         }
 
