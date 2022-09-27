@@ -2,7 +2,9 @@
     <h1> Lista de tarefas </h1>
     <hr>
     <ul>
-        <li v-for="todo in todoList" :key="todo.identify">{{todo.title}}</li>
+        <li v-for="todo in todoList" :key="todo.identify">
+            {{todo.title}}
+        </li>
     </ul>
 </template>
 
