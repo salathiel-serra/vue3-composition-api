@@ -1,5 +1,8 @@
 <template>
-    <h1> Lista de tarefas </h1>
+    <h1> 
+        Lista de tarefas 
+        <router-link :to="{name: 'todos.create'}"> + </router-link>
+    </h1>
     <hr>
     <div v-if="isLoading"> Carregando ... </div>
     <ul>
@@ -33,7 +36,7 @@
                     .finally(() => {
                         isLoading.value = false;
                     });
-            })
+            });
 
             return {
                 todoList,
